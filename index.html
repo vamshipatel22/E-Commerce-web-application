@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-Shop Demo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">E-Shop Demo</div>
+      <div class="controls">
+        <input id="search" class="input" placeholder="Search products..." />
+        <select id="sort" class="input">
+          <option value="default">Sort</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+        </select>
+        <button id="btnAdminToggle" class="btn small secondary">Admin</button>
+        <button id="btnCartToggle" class="btn small">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </header>
+
+    <main>
+      <h2>Products</h2>
+      <div id="productGrid" class="grid" aria-live="polite"></div>
+
+      <section id="adminPanel" class="card admin" hidden>
+        <h3>Admin — Add Product</h3>
+        <form id="adminForm" class="form">
+          <input id="pTitle" class="input" placeholder="Title" required>
+          <input id="pImage" class="input" placeholder="Image URL (optional)">
+          <textarea id="pDesc" class="input" placeholder="Short description" rows="3"></textarea>
+          <div class="row">
+            <input id="pPrice" class="input" placeholder="Price (399.99)" required>
+            <input id="pStock" class="input" placeholder="Stock (10)" required>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn">Add Product</button>
+            <button id="btnSeed" type="button" class="btn secondary">Reset Sample Data</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">Client-side demo • Data stored in localStorage</footer>
+  </div>
+
+  <!-- Cart panel -->
+  <aside id="cartPanel" class="panel" hidden>
+    <div class="panel-header">
+      <strong>Your Cart</strong>
+      <div>
+        <button id="btnClearCart" class="btn small secondary">Clear</button>
+        <button id="btnCloseCart" class="btn small secondary">Close</button>
+      </div>
+    </div>
+    <div id="cartItems" class="panel-body"></div>
+    <div class="panel-footer">
+      <div class="total-row">
+        <div>Total</div>
+        <div id="cartTotal">₹0.00</div>
+      </div>
+      <div class="row">
+        <button id="btnCheckout" class="btn">Checkout</button>
+        <button id="btnContinue" class="btn secondary">Continue</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Product modal -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card">
+      <div id="modalContent"></div>
+      <div class="modal-actions">
+        <button id="modalClose" class="btn secondary small">Close</button>
+        <button id="modalAdd" class="btn small">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout modal -->
+  <div id="checkoutModal" class="modal" hidden>
+    <div class="modal-card">
+      <h3>Checkout</h3>
+      <div id="checkoutSummary" class="checkout-summary"></div>
+      <form id="checkoutForm" class="form">
+        <input id="cName" class="input" placeholder="Full name" required>
+        <input id="cAddress" class="input" placeholder="Address" required>
+        <input id="cEmail" class="input" placeholder="Email" type="email" required>
+        <div class="row">
+          <button type="submit" class="btn">Place Order (Mock)</button>
+          <button id="checkoutCancel" type="button" class="btn secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
